@@ -1,0 +1,7 @@
+controller: Guardar controladores
+includes: Guardar als configuraciones
+model: Guardar los modelos
+public: Guardar css img js lib
+view: Guardar las vistas
+.htaccess: configurar**
+index.php: principal
