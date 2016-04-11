@@ -658,6 +658,9 @@
                         <button class="button"><i class="fa fa-user"></i> Create an account</button>
                     </div>
                 </div>
+                <?php
+                        if (!isset($_SESSION['facebook'])):
+                    ?>
                 <div class="col-sm-6">
                     <div class="box-authentication">
                         <h3>Already registered?</h3>
@@ -670,6 +673,24 @@
                         <a href="<?php echo $helper->getLoginUrl($config['scopes']); ?>" class="button"><i class="fa fa-facebook"></i> Sing in with Facebook!</a></p>
                     </div>
                 </div>
+                <?php else: ?>
+                <div class="col-sm-6">
+                    <div class="box-authentication">
+                        <h3>Already registered?</h3>
+                        <label for="name_login">Nombre</label>
+                        <input id="name_login" type="text" class="form-control" value="<?php echo $facebook_user['name']; ?>">
+                        <label for="emmail_login">Correo Electrónico</label>
+                        <input id="emmail_login" type="text" class="form-control">
+                        <label for="password_login">Contraseña</label>
+                        <input id="password_login" type="password" class="form-control">
+                        <label for="password_login">Confirmar Contraseña</label>
+                        <input id="password_login" type="password" class="form-control">
+                        <br><p><buttom class="button"><i class="fa fa-lock"></i> Sign in</buttom></p>
+                        <?php var_dump($facebook_user);?>
+                        
+                    </div>
+                </div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
