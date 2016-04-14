@@ -1,37 +1,32 @@
-<?php
-   
-$host = "54.191.0.81"; 
-$user = "adempiere"; 
-$pass = "adempiere"; 
-$db = "BizOne"; 
-$port = "5432";
+<?php 
+	
+	class Conexion{
 
-$con = pg_connect("host=$host port=$port dbname=$db user=$user password=$pass")
-    or die ("Could not connect to server\n"); 
+		private $datos = array(
+			"host" => "localhost",
+			"user" => "root",
+			"pass" => "",
+			"db" => "compradetodo"
+		);
+		private $con;
 
-$query = "SELECT name FROM adempiere.c_period LIMIT 5"; 
+		public function __construct(){
+			$this->con = new \mysqli($this->datos['host'],
+				$this->datos['user'],$this->datos['pass'],
+				$this->datos['db']);
+		}
 
-$rs = pg_query($con, $query) or die("Cannot execute query: $query\n");
+		public function consultaSimple($sql){
+			$this->con->query($sql);
+		}
 
-while ($row = pg_fetch_row($rs)) {
-   $mensaje = $row[0] ;
-  echo $mensaje;
-} 
+		public function consultaRetorno($sql){
+			$datos = $this->con->query($sql);
+			return $datos;
+		}
 
-pg_close($con);  
-/*
-$destinatario = "orlando.leon.orue@gmail.com"; 
-            $asunto = "Prueba";
-            //para el envío en formato HTML 
-            
-            mail($destinatario,$asunto,$mensaje)  ;
+	}
 
-            $msg = "First line of text\nSecond line of text";
 
-// use wordwrap() if lines are longer than 70 characters
-$msg = wordwrap($msg,70);
 
-// send email
-mail("orlando.leon.orue@gmail.com","My subject",$msg);
-*/
 ?>
